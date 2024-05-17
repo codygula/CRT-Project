@@ -36,6 +36,10 @@ from time import sleep
 ### This also works. It will return 'devices' JSON object with two options. It crashes after running "change track" part
 ### Device needs to be "active." Unsure if this is doable with API. It will work when I have Spotify open in a browser. It will crash with 404 error if not.
 
+### In order for device to be active, spotify seems to need to be open and recently playing something. 
+### Device ID is not necessary. The API will start playing whatever the active device is, if there is one.
+### Need try/except loop to elegantly handle not having active device.
+
 scope = "user-read-playback-state,user-modify-playback-state"
 sp = spotipy.Spotify(client_credentials_manager=SpotifyOAuth(scope=scope))
 
@@ -44,7 +48,7 @@ res = sp.devices()
 pprint(res)
 
 # Change track
-sp.start_playback(device_id='3dd62d39567de005e7692b0cb194e93b0f3d2a02', uris=['spotify:track:6gdLoMygLsgktydTQ71b15'])
+sp.start_playback(uris=['spotify:track:6gdLoMygLsgktydTQ71b15'])
 
 # Change volume
 sp.volume(100)
