@@ -2438,7 +2438,7 @@
     (property "Reference" "R11" (id 0) (at 81.28 72.3899 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "4.7K" (id 1) (at 81.28 74.9299 0)
+    (property "Value" "470K" (id 1) (at 81.28 74.9299 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (id 2) (at 80.518 73.66 90)
@@ -3933,7 +3933,7 @@
       (reference "R10") (unit 1) (value "10K") (footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
     )
     (path "/1bf1093a-dae2-4c01-8a5c-60919479c7c6"
-      (reference "R11") (unit 1) (value "4.7K") (footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+      (reference "R11") (unit 1) (value "470K") (footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
     )
     (path "/0c35cdc3-768e-4355-8303-76004a0f0766"
       (reference "R12") (unit 1) (value "1K") (footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
