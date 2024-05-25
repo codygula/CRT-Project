@@ -1,46 +1,80 @@
 import pygame
-import random
-import math
-# Skeleton of what the UI should be
 
+import sys
+
+ 
+
+# Initialize Pygame
 
 pygame.init()
-pygame.display.set_caption('Linux Memory Use Utility')
+# Screen dimensions
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+SCREEN_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
-screenX = 800
-screenY = 600
+# Colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GRAY = (100, 100, 100)
+# Font
 
-white = (255, 255, 255)
-green = (0, 255, 0)
-blue = (0, 0, 128)
-black = (0,0,0)
+FONT = pygame.font.Font(None, 36)
 
-score = 0
-my_font = pygame.font.SysFont('Courier', 30)
+# Menu options
 
-highScore = my_font.render(f'HIGH SCORE: {score}', False, white)
+options = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 2", "Option 3", "Option 4"]
+selected_option = 0
+option_spacing = 50
+option_offsets = [0] * len(options)
 
-screen = pygame.display.set_mode((screenX,screenY))
-# clock = pygame.time.Clock()
+# Create the screen
 
-# Display score and high score
-pygame.font.init() 
+screen = pygame.display.set_mode(SCREEN_SIZE)
+pygame.display.set_caption("Interactive Menu")
 
+ 
 
+# Main loop
 running = True
 while running:
-    # FPS = 30 # frames per second setting
-    # fpsClock = pygame.time.Clock()
-    
-    # Background color
-    screen.fill((0,0,0))
-   
-    # Display score
-    text_surface = my_font.render(f'SCORE: {score}', False, white)
-    screen.blit(text_surface, (0,0))
-    
-    #display high score
-    screen.blit(highScore, (0,30))
-    
-    # fpsClock.tick(FPS)
-    pygame.display.update()
+    # Handle events
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                selected_option = (selected_option - 1) % len(options)
+            elif event.key == pygame.K_DOWN:
+                selected_option = (selected_option + 1) % len(options)
+            elif event.key == pygame.K_RETURN:
+                print("Selected:", options[selected_option])
+                # Add your code here for what happens when an option is selected
+
+    # Clear the screen
+    screen.fill(BLACK)
+
+    # Update option offsets
+    for i in range(len(options)):
+        target_offset = (i - selected_option) * option_spacing
+        option_offsets[i] += (target_offset - option_offsets[i]) * 0.001
+
+ 
+    # Display options
+    for i, option in enumerate(options):
+        if i == selected_option:
+            text_color = WHITE
+        else:
+            text_color = GRAY
+        text = FONT.render(option, True, text_color)
+        text_rect = text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + option_offsets[i]))
+        screen.blit(text, text_rect)
+
+
+    # Update the display
+    pygame.display.flip()
+
+ 
+
+# Quit Pygame
+pygame.quit()
+sys.exit()
